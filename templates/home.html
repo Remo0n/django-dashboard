@@ -1,0 +1,40 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+    <head>
+        <title>Nozom HomePage</title>
+        <link rel="stylesheet" href="{% static 'css/home.css'%}">
+    </head>
+    <body>
+        <header>
+            <div class="video-container">
+                <video autoplay loop muted>
+                    <source src="{% static 'video/mod.mp4'%}" type="video/mp4">
+                </video>
+            </div>
+            <div class="overlay">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 logo-1">
+                            <div class="img-holder">
+                              <img src="{% static 'img/ArmedForces.png'%}" alt="egyptian armed forces">
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-6 title-1">
+                            <h1>القوات المسلحة المصرية</h1>
+                            <h4>المنطقة الغربية العسكرية</h4>
+                            <h4>نظم المعلومات</h4>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-3 logo-2">
+                            <div class="img-holder">
+                                <img src="{% static 'img/egypt.png'%}" alt="egyptian armed forces">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <img class="flag-img" src="{% static 'img/egypt-def.jpg'%}" alt="egyptian armed forces">
+    </body>
+</html>

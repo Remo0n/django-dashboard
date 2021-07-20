@@ -9,11 +9,19 @@ class Ratification(models.Model):
     serial_number = models.CharField(max_length=250)
 
 
+class Sector(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+    name_ar = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name_ar
+
+
 class Device(models.Model):
     id = models.AutoField(primary_key=True, help_text=_("Id"), verbose_name=_("مسلسل"))
     entry_date = models.DateField(default=datetime.date.today, verbose_name=_("تاريخ الدخول"))
-    delivery_entity = models.CharField(max_length=50, choices=[('عمليات', 'عمليات'), ('تدريب', 'تدريب')],
-                                       verbose_name=_("شعبة/فرع"))
+    delivery_entity = models.ForeignKey(Sector, on_delete=models.PROTECT, verbose_name=_("شعبة/فرع"))
     delivery_engineer = models.CharField(max_length=50, verbose_name=_("المندوب"))
     type = models.CharField(max_length=50, verbose_name=_("اسم الصنف"))
     serial_number = models.CharField(max_length=50, help_text=_("Serial Number"), verbose_name=_("سريال"))

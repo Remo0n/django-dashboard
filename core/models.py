@@ -4,7 +4,11 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
-# Create your models here.
+class Ratification(models.Model):
+    id = models.AutoField(primary_key=True)
+    serial_number = models.CharField(max_length=250)
+
+
 class Device(models.Model):
     id = models.AutoField(primary_key=True, help_text=_("Id"), verbose_name=_("مسلسل"))
     entry_date = models.DateField(default=datetime.date.today, verbose_name=_("تاريخ الدخول"))
@@ -46,9 +50,9 @@ class Device(models.Model):
         verbose_name_plural = _("Devices")
 
     def save(self, *args, **kwargs):
-        custody_serial_num = ['1a', '2b']
-        if self.serial_number in custody_serial_num:
+        try:
+            Ratification.objects.get(serial_number=self.serial_number)
             self._is_custody = True
-        else:
+        except Ratification.DoesNotExist:
             self._is_custody = False
         super(Device, self).save(*args, **kwargs)

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
 
-from core.models import Device
+from core.models import Device, Ratification
 from rangefilter.filters import DateRangeFilter
 
 
@@ -47,6 +47,7 @@ class DeviceAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Device, DeviceAdmin)
+admin.site.register(Ratification)
 
 # Unregister Device Model
 admin.site.unregister(User)
